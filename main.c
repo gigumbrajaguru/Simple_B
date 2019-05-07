@@ -15,6 +15,7 @@ void fillArray();
  *
  **/
 
+
 int count=0,oneD,issystemup=0;
 char *customerarray[100][6];
 char *detailarray[4][4]={{"N","Normal","4%","500"},{"E","Eighteen Plus","4.5%","1000"},{"R","Rankakulu","5%","1500"},{"W","Wanitha","4.7%","1000"}};
