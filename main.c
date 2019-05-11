@@ -9,6 +9,7 @@ void displayAccount();
 void sortedDetail();
 void saveExit();
 void fillArray();
+void duplicateNumberCheck(char number[6]);
 
 /*Developer Gigum Bandara Rajaguru
  * Topic: Simple Bank
@@ -62,11 +63,13 @@ int main() {
 }
 //Function to add new account
 void addNewCustomer(int count){
+    customerarray[count+oneD][0]=NULL;
     char decision,number[6],type[2],name[255],nic[11],balance[500];
     int turn;
     printf("Customer number %d :\n",count);
     printf("Enter Acc number :\n");
     scanf("%s", number);
+    duplicateNumberCheck(number);
     printf("Enter Acc type :\n");
     scanf("%s", type);
     printf("Enter Acc name :\n");
@@ -101,6 +104,25 @@ void addNewCustomer(int count){
     }
 
 }
+void duplicateNumberCheck(char number[6]) {
+    for (int i = 0; i < 100; i++) {
+        if(customerarray[i][0]!=NULL) {
+
+            printf("%s array\n",customerarray[i][0]);
+            printf("%s number \n",number);
+            int res = strncmp(customerarray[i][0], number,6);
+            if (res == 0) {
+
+                printf("**********************\n");
+                printf("Invalid account number\n");
+                printf("**********************\n");
+                main();
+            }
+        }
+    }
+}
+
+
 //Function to deposite money
 void depositeMoney(){
     char number[6],amount[10],buff[100];
@@ -117,7 +139,9 @@ void depositeMoney(){
                 printf("Enter amount :\n");
                 scanf("%s", amount);
                 if(amount<0){
+                    printf("**************");
                     printf("invalid amount");
+                    printf("**************");
                     main();
                 }
                 current = customerarray[checkcustomer][4];
@@ -129,6 +153,7 @@ void depositeMoney(){
             }
             else{
                 printf("invalid account ID");
+                main();
             }
         }
     }
